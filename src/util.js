@@ -57,6 +57,33 @@ function chillHop() {
       id: uuidv4(),
       active: false,
     },
+    {
+      name: "Blind Heart",
+      cover: "https://linkstorage.linkfire.com/medialinks/images/163e640d-f9cd-462e-baed-9e815dec56ad/artwork-440x440.jpg",
+      artist: "MADZI, ETikka",
+      audio: "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/207/blind-heart-1664366439-37g6tdIYYQ.mp3",
+      color: ["#c94743", "#03010c"],
+      id: uuidv4(),
+      active: false,
+    },
+    {
+      name: "Blind Heart",
+      cover: "https://linkstorage.linkfire.com/medialinks/images/163e640d-f9cd-462e-baed-9e815dec56ad/artwork-440x440.jpg",
+      artist: "MADZI, ETikka",
+      audio: "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/207/blind-heart-1664366439-37g6tdIYYQ.mp3",
+      color: ["#c94743", "#03010c"],
+      id: uuidv4(),
+      active: false,
+    },
+    {
+      name: "Blind Heart",
+      cover: "https://linkstorage.linkfire.com/medialinks/images/163e640d-f9cd-462e-baed-9e815dec56ad/artwork-440x440.jpg",
+      artist: "MADZI, ETikka",
+      audio: "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/207/blind-heart-1664366439-37g6tdIYYQ.mp3",
+      color: ["#c94743", "#03010c"],
+      id: uuidv4(),
+      active: false,
+    },
   ];
 }
 
