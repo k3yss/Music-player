@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import { playAudio } from "../util";
 
 function Player({
   currentSong,
@@ -16,7 +17,25 @@ function Player({
   songInfo,
   songs,
   setCurrentSong,
+  setSongs,
 }) {
+  // UseEffect
+  useEffect(() => {
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
   // Ref
 
   const playSongHandler = () => {
@@ -48,10 +67,12 @@ function Player({
     if (direction === "skip-back") {
       if ((currentIndex - 1) % songs.length === -1) {
         setCurrentSong(songs[songs.length - 1]);
-        return
+        playAudio(isPlaying, audioRef);
+        return;
       }
       setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
+    playAudio(isPlaying, audioRef);
   };
 
   return (
@@ -63,10 +84,12 @@ function Player({
           max={songInfo.duration || 0}
           value={songInfo.currentTime}
           onChange={dragHandler}
-          className="w-full py-4 "
+          className="w-full py-4 input pointer"
           type="range"
         />
-        <p className="p-4">{getTime(songInfo.duration)}</p>
+        <p className="p-4">
+          {songInfo.duration ? getTime(songInfo.duration) : "0:00"}
+        </p>
       </div>
       <div className="playcontrol flex justify-between items-center p-4 w-1/2">
         <FontAwesomeIcon

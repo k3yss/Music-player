@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Player from "./components/Player";
 import Song from "./components/Song";
-import data from "./util";
+import data from "./data";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
 export default function App() {
@@ -19,6 +19,12 @@ export default function App() {
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [libraryStatus, setLibraryStatus] = useState(false);
+
+  const songEndHandler =async () => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if(isPlaying) audioRef.current.play()
+  };
   return (
     <div className="App">
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
@@ -32,6 +38,7 @@ export default function App() {
         songInfo={songInfo}
         songs={songs}
         setCurrentSong={setCurrentSong}
+        setSongs={setSongs}
       />
       <Library
         audioRef={audioRef}
@@ -46,6 +53,7 @@ export default function App() {
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
+        onEnded={songEndHandler}
       ></audio>
     </div>
   );
