@@ -22,3 +22,13 @@
     font-family: 'Lato', sans-serif;
   }
 }
+.selected{
+  background-color: rgb(173, 233, 213);
+}
+.active-library{
+  transform: translateX(0%);
+  opacity: 1;
+}
+.library{
+  transform: translateX(-100%);
+}
